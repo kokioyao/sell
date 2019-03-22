@@ -17,7 +17,7 @@ public interface ProductService {
     ProductInfo findOne(String productId);
 
     /**
-     * 查找所有上架的上屏
+     * 查找所有上架的商品
      * @return
      */
     List<ProductInfo> findUpAll();
