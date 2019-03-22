@@ -9,6 +9,8 @@ import cn.footman.sell.service.ProductService;
 import cn.footman.sell.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -124,6 +126,8 @@ public class SellerProductController {
      * @return
      */
     @PostMapping("/save")
+//    @CachePut(cacheNames = "product")
+    @CacheEvict(cacheNames = "product",key = "111")//删除redis
     public ModelAndView save(@Valid ProductForm form, BindingResult bindingResult,
                              Map<String,Object> map){
         if(bindingResult.hasErrors()){

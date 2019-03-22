@@ -11,6 +11,7 @@ import cn.footman.sell.utils.ResultViewObjectUtil;
 import cn.footman.sell.viewobject.ResultViewObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.util.CollectionUtils;
@@ -60,6 +61,7 @@ public class BuyerOrderController {
 
     //订单列表
     @GetMapping("/list")
+    @Cacheable(cacheNames = "product",key = "111")
     public ResultViewObject<List<OrderDTO>> list(@RequestParam("openid") String openid,
                                                  @RequestParam(value = "page", defaultValue = "0") Integer page,
                                                  @RequestParam(value = "size", defaultValue = "10") Integer size) {
